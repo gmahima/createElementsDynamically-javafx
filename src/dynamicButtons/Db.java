@@ -3,6 +3,9 @@ package dynamicButtons;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -21,8 +25,9 @@ import javafx.stage.Stage;
 public class Db extends Application {
 
     Label text, clicked;
-    Button button, clickButton;
+    Button clickButton;
     VBox BPane;
+    List<Button> buttonlist = new ArrayList<>();
 
     @Override
     public void start (Stage primaryStage) {
@@ -37,12 +42,9 @@ public class Db extends Application {
         primaryStage.setScene(Scene);
 
         text = new Label("generate buttons");
-        button = new Button("Click Me");
-        button.setOnAction(new EventHandler<ActionEvent>() {
+{
+    {
 
-            @Override
-            public void handle(ActionEvent event) {
-                Object source = event.getSource();
                 String s = null;
                 //Variable to display text read from file
 
@@ -72,23 +74,21 @@ public class Db extends Application {
                     text.setText("Text retrieved from file: \n\n" + s);
                     String lines[] = s.split("\\r?\\n");
                     for (int i=0; i<lines.length; i++) {
-                        System.out.println(i + lines[i]);
-                        BPane.getChildren().add(new Button(lines[i])) ;
-                        primaryStage.show();
+                        System.out.println(i + ":" + lines[i]);
+                        Button button = new Button(lines[i]);
+                        buttonlist.add(button);
 
                     }
 
 
 
-                    button.setText("Click Again");
-
-
-
             }
-        });
+        }
 
         //Set positions for each control in the BorderPane
-        BPane.getChildren().addAll(text, button);
+        BPane.getChildren().addAll(text);
+        BPane.getChildren().addAll(buttonlist);
+
 
         //Show the scene
         primaryStage.show();
