@@ -29,6 +29,11 @@ public class Db extends Application {
     VBox BPane;
     List<Button> buttonlist = new ArrayList<>();
 
+    //main method
+    public static void main(String[] args){
+        launch(args);
+    }
+
     @Override
     public void start (Stage primaryStage) {
         //Create GridPane
@@ -42,10 +47,7 @@ public class Db extends Application {
         primaryStage.setScene(Scene);
 
         text = new Label("generate buttons");
-{
-    {
-
-                String s = null;
+        String s = null;
                 //Variable to display text read from file
 
                     FileInputStream in = null;
@@ -76,14 +78,18 @@ public class Db extends Application {
                     for (int i=0; i<lines.length; i++) {
                         System.out.println(i + ":" + lines[i]);
                         Button button = new Button(lines[i]);
+                        button.setOnAction(event -> {
+                            System.out.printf("you clicked %s !!!! \n", button.getText());
+                        });
                         buttonlist.add(button);
-
                     }
 
 
 
-            }
-        }
+
+
+
+
 
         //Set positions for each control in the BorderPane
         BPane.getChildren().addAll(text);
@@ -92,10 +98,5 @@ public class Db extends Application {
 
         //Show the scene
         primaryStage.show();
-    }
-
-    //main method
-    public static void main(String[] args){
-        launch(args);
     }
 }
