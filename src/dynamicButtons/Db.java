@@ -6,11 +6,12 @@ import java.io.FileOutputStream;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -21,12 +22,12 @@ public class Db extends Application {
 
     Label text, clicked;
     Button button, clickButton;
-    BorderPane BPane;
+    VBox BPane;
 
     @Override
     public void start (Stage primaryStage) {
         //Create GridPane
-        BPane = new BorderPane();
+        BPane = new VBox();
         BPane.setId("grid-pane");
 
         //Create Scene and add Grid
@@ -72,8 +73,11 @@ public class Db extends Application {
                     String lines[] = s.split("\\r?\\n");
                     for (int i=0; i<lines.length; i++) {
                         System.out.println(i + lines[i]);
+                        BPane.getChildren().add(new Button(lines[i])) ;
+                        primaryStage.show();
 
                     }
+
 
 
                     button.setText("Click Again");
@@ -84,8 +88,7 @@ public class Db extends Application {
         });
 
         //Set positions for each control in the BorderPane
-        BPane.setTop(text);
-        BPane.setBottom(button);
+        BPane.getChildren().addAll(text, button);
 
         //Show the scene
         primaryStage.show();
