@@ -69,8 +69,15 @@ public class Db extends Application {
                     }
                     //Display text read from file
                     text.setText("Text retrieved from file: \n\n" + s);
+                    String lines[] = s.split("\\r?\\n");
+                    for (int i=0; i<lines.length; i++) {
+                        System.out.println(i + lines[i]);
+
+                    }
+
 
                     button.setText("Click Again");
+
 
 
             }
