@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.event.*;
 import javafx.collections.*;
 
+import java.io.FileReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,16 +19,6 @@ public class Controller {
     public VBox vbox;
     @FXML
     void acttable() {
-
-        String sqlQuery = "SELECT * FROM restauranttables;";
-        List<Button> buttonlist = new ArrayList<>(); //our Collection to hold newly created Buttons
-
-            for (int i=0; i<10; i++) {
-                buttonlist.add(new Button("restaurant"));
-
-            }
-
-            vbox.getChildren().addAll(buttonlist); //then add all your Buttons that you just created
 
     }
 }
